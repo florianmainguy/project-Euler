@@ -16,7 +16,7 @@ int a = 0;
 int b = 0;
 int c = 0;
 int abc = 0;
-int no_result = 1;u
+int no_result = 1;
 
 for(a=1; a<1000 && no_result; a++) {
 	for(b=a+1; b<1000 && no_result; b++) {
