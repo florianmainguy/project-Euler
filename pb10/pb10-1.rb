@@ -5,6 +5,10 @@
 
 # SOLUTION 1. Executed Time: 18m31.577s
 
+# Brut force method. 
+# For each number n from 0 to 2million, check if it is divisible by any number 
+# from 2 to n. If not, it's a prime, add it to "sum_primes".
+
 nb_max = 2_000_000
 arr_nb = (2..nb_max).to_a
 sum_primes = 0
