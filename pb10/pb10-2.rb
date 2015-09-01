@@ -1,8 +1,3 @@
-# Summation of primes
-
-# The sum of the primes below 10 is 2 + 3 + 5 + 7 = 17
-# Find the sum of all the primes below two million
-
 # SOLUTION 2. Executed Time: 5.380s
 
 # For each number n from 0 to 2million, check if it is divisible by 
@@ -17,8 +12,8 @@ i=0
 arr_nb.each do |number|
   primes.each do |prime|
   	break if number % prime == 0
-  	if (prime == primes.last) || (number / prime < prime) # The highest prime p of a
-  	  primes << number 									  # a number N: p**2 < N
+  	if (prime == primes.last) || (number < prime**2)  # The smallest prime p multiple
+  	  primes << number 								  # of a number N: p**2 < N
   	  break
   	end
   end

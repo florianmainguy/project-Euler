@@ -1,8 +1,3 @@
-# Summation of primes
-
-# The sum of the primes below 10 is 2 + 3 + 5 + 7 = 17
-# Find the sum of all the primes below two million
-
 # SOLUTION 4. Executed Time: 0.443s
 
 # Implementation of eratosthenes' sieve
@@ -12,10 +7,10 @@
 # eliminating is the next prime. We can then loop this two operations till we get
 # all the primes of the number N.
 #
-# Optimization 1: stop eliminating multiples when we arrived at a prime p where
-#    			  p**2 > N because multiples have already been eliminated.
+# Optimization 1: stop eliminating multiples when we arrive at a prime p where
+#    			  p**2 > N because following non primes have already been eliminated.
 # Optimization 2: eliminate multiples of a prime p beginning at p**2 because 
-# 			      previous multiples have already been eliminated.
+# 			      previous non primes have already been eliminated.
 
 nb_max = 2_000_000
 
