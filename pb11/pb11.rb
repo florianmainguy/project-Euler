@@ -34,9 +34,9 @@ diag1_product = 0
 diag2_product = 0
 
 # horizontal product
-grid.each do |row|
-  (0..16).each do |n|
-    hor_product = row[n..n+3].inject(:*) 
+(0..19).each do |row|
+  (0..16).each do |column|
+    hor_product = grid[row][column..column+3].inject(:*) 
     greatest_product = hor_product if hor_product > greatest_product
   end
 end
