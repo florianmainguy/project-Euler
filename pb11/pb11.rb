@@ -2,7 +2,7 @@
 # in the same direction (up, down, left, right, or diagonally)
 # in a 20×20 grid?
 
-# Things to remember:
+# Things learned:
   # Any number beginning by '0' will be considered octal
   # To go through a decreasing range: .downto 
 
@@ -27,52 +27,33 @@ grid = [[ 8, 02, 22, 97, 38, 15, 00, 40, 00, 75, 04, 05, 07, 78, 52, 12, 50, 77,
         [20, 73, 35, 29, 78, 31, 90, 01, 74, 31, 49, 71, 48, 86, 81, 16, 23, 57, 05, 54],
         [01, 70, 54, 71, 83, 51, 54, 69, 16, 92, 33, 48, 61, 43, 52, 01, 89, 19, 67, 48]]
 
-greatest_product = 0
-hor_product = 0
-vert_product = 0
-diag1_product = 0
-diag2_product = 0
+products = []
 
-# horizontal product
 (0..19).each do |row|
-  (0..16).each do |column|
-    hor_product = grid[row][column..column+3].inject(:*) 
-    greatest_product = hor_product if hor_product > greatest_product
-  end
-end
-
-# vertical product
-(0..16).each do |row|
   (0..19).each do |column|
-    vert_product = 1
-    (0..3).each do |n|
-      vert_product *= grid[row+n][column]
+
+    unless column > 16   # horizontal product
+      hor_product = 1
+      (0..3).each { |n| hor_product *= grid[row][column+n] }
+      products << hor_product
     end
-    greatest_product = vert_product if vert_product > greatest_product
+
+    unless row > 16   # vertical product
+      vert_product = 1
+      (0..3).each { |n| vert_product *= grid[row+n][column] }
+      products << vert_product 
+    end
+
+    unless column > 16 || row > 16    
+      diag1_product = 1   # diagonal product \
+      (0..3).each { |n| diag1_product *= grid[row+n][column+n] }
+      products << diag1_product
+
+      diag2_product = 1   # diagonal product /
+      (0..3).each { |n| diag2_product *= grid[row+n][column+3-n] }
+      products << diag2_product
+    end
   end
 end
 
-# diagonal product \
-(0..16).each do |row|
-  (0..16).each do |column|
-    diag1_product = 1
-    (0..3).each do |n|
-      diag1_product *= grid[row+n][column+n]
-    end
-    greatest_product = diag1_product if diag1_product > greatest_product
-  end
-end
-
-# diagonal product /
-19.downto(3).each do |row|
-  (0..16).each do |column|
-    diag2_product = 1
-    (0..3).each do |n|
-      diag2_product *= grid[row-n][column+n]
-    end
-    greatest_product = diag2_product if diag2_product > greatest_product
-  end
-end
-
-p "greatest product: " + greatest_product.to_s
-
+p "greatest product: " + products.max.to_s
