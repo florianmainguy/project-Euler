@@ -12,7 +12,7 @@ divisors = []
 nb_divisors = 500
 
 while divisors.length < (nb_divisors/2.0).round   # 'round' in case of odd
-  divisors = []									  #  number of divisors
+  divisors = []                                   #  number of divisors
   triangle_nbs << (triangle_nbs.last + triangle_nbs.length) 
   (1..Math.sqrt(triangle_nbs.last)).each do |n|
     divisors << n if triangle_nbs.last % n == 0
