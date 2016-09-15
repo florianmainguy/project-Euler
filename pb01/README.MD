@@ -10,4 +10,4 @@ For each number below 1000, check if it is divisable by 3 or 5. Push the divisab
 
 ### Execution Time
 
-- pb1.rb: 0.047ss
+- pb1.rb: 0.047s
