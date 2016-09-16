@@ -15,18 +15,16 @@
  * routes. */
 
 #include <stdio.h>
+#include <stdint.h>
 
 int main() {
-
-/* phase 1 jusqu'à L-1 */
-/* phase 2 jusqu'à L*2 */
 
 /* Lenght of grid */
 int Lenght = 20;
 
 /* Base array of possible routes after top left node */
-int routes[1000] = {0,1,1,0};
-int tempo[1000] = {};
+uint64_t routes[1000] = {0,1,1,0};
+uint64_t tempo[1000] = {};
 
 int nb_routes = 0;
 int i = 0;
@@ -35,9 +33,8 @@ int nb_elements = 0;
 
 /* 1st phase: nodes on the side of the grid have 1 input and 2 outputs */
 nb_elements = 4;
-for (i = 1; i <= Lenght; i++) {
-  tempo[] = {};
-
+for (i = 1; i < Lenght; i++) {
+  printf("Phase 1, routes[0]: %d\n", routes[0]);
   tempo[0] = 0;
   for (j = 1; j <= nb_elements-1; j+=2) {
     tempo[j] = routes[j-1]+ routes[j];
@@ -46,25 +43,40 @@ for (i = 1; i <= Lenght; i++) {
   tempo[nb_elements+1] = 0;
 
   nb_elements = nb_elements + 2;
-  for (j = 0; j < 1000; j++) { *********
+  for (j = 0; j < 1000; j++) {
       routes[j] = tempo[j];
    }
+
+  printf("\nroutes:");
+   for (j = 0; j < 10; j++) {
+      printf("%d ",routes[j]);
+   }
+   printf("\n");
+
 }
 
 /* 2nd phase: nodes on the side of the grid have 2 inputs and 1 output */
 nb_elements = Lenght*2 + 2;
-for (i = Lenght; i > 1; i--) {
-  tempo[] = {};
-
+for (i = Lenght; i >= 1; i--) {
+  printf("Phase 2, routes[0]: %d\n", routes[0]);
   tempo[0] = routes[0] + routes[1];
   for (j = 1; j <= nb_elements-3; j+=2) {
     tempo[j] = routes[j+1]+ routes[j+2];
     tempo[j+1] = routes[j+1]+ routes[j+2];
   }
-  tempo[nb_elements-3] = routes[nb_elements-1] + routes[nb_elements];
+  /*tempo[nb_elements-3] = routes[nb_elements-1] + routes[nb_elements];*/
 
   nb_elements = nb_elements - 2;
-  routes[] = tempo[];
+  for (j = 0; j < 1000; j++) {
+      routes[j] = tempo[j];
+   }
+
+   printf("\nroutes:");
+   for (j = 0; j < 10; j++) {
+      printf("%d ",routes[j]);
+   }
+   printf("\n");
+  
 }
 
 nb_routes = routes[0] + routes[1];
