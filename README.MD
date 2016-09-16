@@ -4,16 +4,22 @@
 Problems are of varying difficulty but each is solvable in less than a minute using an efficient algorithm on a modestly powered computer.
 
 
+## How to run my programs on Mac OS
+
+#### C
+
+- Instal Xcode
+- To run gcc without GUI, type in terminal 'xcode-select --install'
+- Compile your program: 'gcc program.c'
+- Type './a.out'
 
 ## How to run my programs on Windows
-
 
 #### Ruby
 
 - Instal RubyInstaller
 - Launch program named "Start Command Prompt with Ruby"
 - Type "ruby program.rb"
-
 
 #### C
 
@@ -23,7 +29,6 @@ Problems are of varying difficulty but each is solvable in less than a minute us
 - Add 'C:\MinGW\bin' at the end
 - In the Command Prompt, compile your program: 'gcc program.c'
 - Type 'a.exe'
-
 
 ## Problems
 

@@ -14,8 +14,9 @@
  * the bottom right node, the value in the array will be the number of possible
  * routes. */
 
+/** Execution time: 0.035s **/
+
 #include <stdio.h>
-#include <stdint.h>
 
 int main() {
 
@@ -23,64 +24,46 @@ int main() {
 int Lenght = 20;
 
 /* Base array of possible routes after top left node */
-uint64_t routes[1000] = {0,1,1,0};
-uint64_t tempo[1000] = {};
-
-int nb_routes = 0;
+unsigned long pre_node[1000] = {0,1,1,0};
+unsigned long post_node[1000] = {};
+unsigned long nb_pre_node = 0;
 int i = 0;
 int j = 0;
-int nb_elements = 0;
+int nb_elements = 4; // number of non null elements in 'pre-node'
 
-/* 1st phase: nodes on the side of the grid have 1 input and 2 outputs */
-nb_elements = 4;
+/* 1st phase: nodes on the edge of the grid have 1 input and 2 outputs */
 for (i = 1; i < Lenght; i++) {
-  printf("Phase 1, routes[0]: %d\n", routes[0]);
-  tempo[0] = 0;
+  /* possible routes after nodes pushed into 'post-node' */
+  post_node[0] = 0;
   for (j = 1; j <= nb_elements-1; j+=2) {
-    tempo[j] = routes[j-1]+ routes[j];
-    tempo[j+1] = routes[j-1]+ routes[j];
+    post_node[j] = pre_node[j-1]+ pre_node[j];
+    post_node[j+1] = post_node[j];
   }
-  tempo[nb_elements+1] = 0;
+  post_node[nb_elements+1] = 0;
 
+  /* post_node becomes pre_node */
   nb_elements = nb_elements + 2;
   for (j = 0; j < 1000; j++) {
-      routes[j] = tempo[j];
-   }
-
-  printf("\nroutes:");
-   for (j = 0; j < 10; j++) {
-      printf("%d ",routes[j]);
-   }
-   printf("\n");
-
+    pre_node[j] = post_node[j];
+  }
 }
 
-/* 2nd phase: nodes on the side of the grid have 2 inputs and 1 output */
+/* 2nd phase: nodes on the edge of the grid have 2 inputs and 1 output */
 nb_elements = Lenght*2 + 2;
 for (i = Lenght; i >= 1; i--) {
-  printf("Phase 2, routes[0]: %d\n", routes[0]);
-  tempo[0] = routes[0] + routes[1];
+  post_node[0] = pre_node[0] + pre_node[1];
   for (j = 1; j <= nb_elements-3; j+=2) {
-    tempo[j] = routes[j+1]+ routes[j+2];
-    tempo[j+1] = routes[j+1]+ routes[j+2];
+    post_node[j] = pre_node[j+1]+ pre_node[j+2];
+    post_node[j+1] = post_node[j];
   }
-  /*tempo[nb_elements-3] = routes[nb_elements-1] + routes[nb_elements];*/
 
   nb_elements = nb_elements - 2;
   for (j = 0; j < 1000; j++) {
-      routes[j] = tempo[j];
-   }
-
-   printf("\nroutes:");
-   for (j = 0; j < 10; j++) {
-      printf("%d ",routes[j]);
-   }
-   printf("\n");
-  
+    pre_node[j] = post_node[j];
+  }
 }
 
-nb_routes = routes[0] + routes[1];
-
-printf("Number of possible routes for a grid of %dx%d: %d", Lenght,Lenght,nb_routes);
+nb_pre_node = pre_node[0] + pre_node[1];
+printf("Number of possible pre_node for a grid of %dx%d: %lu", Lenght,Lenght,nb_pre_node);
 
 }
