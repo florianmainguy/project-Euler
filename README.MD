@@ -46,3 +46,4 @@ Problems are of varying difficulty but each is solvable in less than a minute us
 12. [Highly divisible triangular number](https://github.com/florianmainguy/project-Euler/tree/master/pb12)
 13. [Large sum](https://github.com/florianmainguy/project-Euler/tree/master/pb13)
 14. [Longest Collatz sequence](https://github.com/florianmainguy/project-Euler/tree/master/pb14)
+14. [Lattice paths](https://github.com/florianmainguy/project-Euler/tree/master/pb15)
